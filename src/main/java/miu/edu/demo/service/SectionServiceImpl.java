@@ -78,5 +78,44 @@ public class SectionServiceImpl implements SectionService {
         var student = studentRepo.findById(studentId).orElse(null);
         section.getStudents().remove(student);
     }
+
+    @Override
+    public void transferStudent(Long sectionId, Integer studentId, Long newSectionId) {
+        // Retrieve current section
+        var currentSection = sectionRepository.findById(sectionId).orElseThrow(() -> new RuntimeException("Current section not found"));
+        // Retrieve new section
+        var newSection = sectionRepository.findById(newSectionId).orElseThrow(() -> new RuntimeException("New section not found"));
+        // Retrieve student
+        var student = studentRepo.findById(studentId).orElseThrow(() -> new RuntimeException("Student not found"));
+
+        // Check if the student already exists in the new section
+        if (newSection.getStudents().contains(student)) {
+            System.out.println("Student already exists in the new section...");
+        } else {
+            // Remove student from the current section
+            List<Student> currentSectionStudents = currentSection.getStudents();
+            if (currentSectionStudents.remove(student)) {
+                // Update the current section with the new student list
+                currentSection.setStudents(currentSectionStudents);
+
+                // Add student to the new section
+                List<Student> newSectionStudents = newSection.getStudents();
+                newSectionStudents.add(student);
+                newSection.setStudents(newSectionStudents);
+
+                // Save both sections to the repository
+                sectionRepository.save(currentSection);
+                sectionRepository.save(newSection);
+
+                System.out.println("Student transferred successfully.");
+            } else {
+                System.out.println("Student not found in the current section.");
+            }
+        }
+    }
+
+
+
 }
+
 

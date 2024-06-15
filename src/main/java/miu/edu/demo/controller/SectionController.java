@@ -60,5 +60,16 @@ public class SectionController {
     public void removeStudentsInSection(@PathVariable Long sectionId, @PathVariable Integer studentId) {
         sectionService.removeStudentsInSection(sectionId, studentId);
     }
+
+    @PutMapping("/{sectionId}/students")
+    public void transferStudent(
+            @PathVariable("sectionId") Long sectionId,
+            @RequestParam(value = "studentId" ,required = false) Integer studentId,
+            @RequestParam(value = "newSectionId" ,required = false) Long newSectionId) {
+        sectionService.transferStudent(sectionId, studentId, newSectionId);
+    }
+
+
+
 }
 

@@ -10,11 +10,15 @@ INSERT INTO Faculty (id, name) VALUES (1000, 'Dean');
 INSERT INTO Faculty (id, name) VALUES (2000, 'Umur');
 
 INSERT INTO Section (id,name,term,academic_year,faculty_id) VALUES (611,'WAA',1,2023,1000);
-INSERT INTO Section (id,name,term,academic_year,faculty_id) VALUES (612,'DS',1,2023,2000);
+INSERT INTO Section (id,name,term,academic_year,faculty_id) VALUES (612,'WAA',1,2023,1000);
+INSERT INTO Section (id,name,term,academic_year,faculty_id) VALUES (613,'DS',1,2023,2000);
 
 INSERT INTO SECTION_STUDENTS (students_id,section_id) VALUES (111,611);
 INSERT INTO SECTION_STUDENTS (students_id,section_id) VALUES (112,611);
 INSERT INTO SECTION_STUDENTS (students_id,section_id) VALUES (113,612);
 INSERT INTO SECTION_STUDENTS (students_id,section_id) VALUES (114,612);
+INSERT INTO SECTION_STUDENTS (students_id,section_id) VALUES (112,613);
+INSERT INTO SECTION_STUDENTS (students_id,section_id) VALUES (113,613);
+INSERT INTO SECTION_STUDENTS (students_id,section_id) VALUES (114,613);
 
 

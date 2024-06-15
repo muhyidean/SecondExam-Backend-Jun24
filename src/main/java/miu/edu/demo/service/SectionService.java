@@ -24,4 +24,6 @@ public interface SectionService {
 
     void removeStudentsInSection(Long sectionId, Integer studentId);
 
+    void transferStudent(Long sectionId, Integer studentId, Long newSectionId);
+
 }
